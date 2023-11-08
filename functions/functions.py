@@ -24,6 +24,7 @@ def operations_by_date(data, amount_of_data):
 
 
 def conclusion(data):
+    data_output = []
     for item in data:
         date = datetime.strptime(item['date'], '%Y-%m-%dT%H:%M:%S.%f').strftime('%d.%m.%Y')
         description = item['description']
@@ -36,8 +37,8 @@ def conclusion(data):
         to = f"{item['to'][:5]}**{item['to'][-4:]}"
         amount = item["operationAmount"]["amount"]
         currency = item["operationAmount"]["currency"]["name"]
-        print(date, description)
-        print(f'''{' '.join(card_name)} {number} -> {to}''')
-        print(amount, currency, "\n")
+        output = f"""{date} {description}\n{' '.join(card_name)} {number} -> {to}\n{amount} {currency}\n"""
+        data_output.append(output)
+    return data_output
 
 
